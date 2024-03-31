@@ -5,11 +5,11 @@ import static java.lang.System.out;
 import FinancialSystem.*;
 
 public class Main {
-    private static final HashMap<Integer, Wallet> listOfWallets = new HashMap<>();
-    private static final HashMap<Integer, CreditCard> listOfCreditCard = new HashMap<>();
-    private static final HashMap<Integer, PotentialCost> listOfPotentialCosts = new HashMap<>();
-    private static final HashMap<Integer, CurrentCost> listOfCurrentCosts = new HashMap<>();
-    private static final HashMap<Integer, PotentialIncome> listOfPotentialIncome = new HashMap<>();
+    private static final Map<Integer, Wallet> listOfWallets = new HashMap<>();
+    private static final Map<Integer, CreditCard> listOfCreditCard = new HashMap<>();
+    private static final Map<Integer, PotentialCost> listOfPotentialCosts = new HashMap<>();
+    private static final Map<Integer, CurrentCost> listOfCurrentCosts = new HashMap<>();
+    private static final Map<Integer, PotentialIncome> listOfPotentialIncome = new HashMap<>();
     private static final Scanner sc = new Scanner(System.in);
     private static String selectedItem;
     private static int inputIndexForGetSetDelete;
@@ -364,7 +364,6 @@ public class Main {
                     listOfCurrentCosts.put(countOfCurrentCosts, new CurrentCost(listOfPotentialCosts.get(inputIndexForGetSetDelete).getNameOfShop(), listOfPotentialCosts.get(inputIndexForGetSetDelete).getCountOfProduct(), listOfPotentialCosts.get(inputIndexForGetSetDelete).getSummaryPrice()));
                     countOfCurrentCosts++;
                     listOfPotentialCosts.remove(inputIndexForGetSetDelete);
-                    countOfPotentialCosts--;
                     break;
                 }
                 listOfCurrentCosts.remove(inputIndexForGetSetDelete);
@@ -454,10 +453,7 @@ public class Main {
                 selectNumberOfPotentialIncome();
                 if (PotentialIncome.moveAmountOfPotentialIncomeToWalletAndRemove(listOfPotentialIncome.get(inputIndexForGetSetDelete))) {
                     listOfPotentialIncome.remove(inputIndexForGetSetDelete);
-                    countOfPotentialIncome--;
-                    break;
                 }
-                listOfPotentialIncome.remove(inputIndexForGetSetDelete);
                 break;
 
             default:
@@ -467,15 +463,17 @@ public class Main {
     }
 
     public static void selectNumberOfWallet() {
+        ArrayList<String> arrayOfKeys = new ArrayList<>();
         for (Integer index : listOfWallets.keySet()) {
             String key = index.toString();
+            arrayOfKeys.add(key);
             String wallet = listOfWallets.get(index).toString();
             out.println(key + " " + wallet);
         }
         out.print("Choose the number of wallet: ");
         inputIndexForGetSetDelete = sc.nextInt();
-        if (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfWallets.size() - 1) {
-            while (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfWallets.size() - 1) {
+        if (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
+            while (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
                 out.print("Choose correct number: ");
                 inputIndexForGetSetDelete = sc.nextInt();
             }
@@ -483,15 +481,17 @@ public class Main {
     }
 
     public static void selectNumberOfCreditCard() {
+        ArrayList<String> arrayOfKeys = new ArrayList<>();
         for (Integer index : listOfCreditCard.keySet()) {
             String key = index.toString();
+            arrayOfKeys.add(key);
             String creditCard = listOfCreditCard.get(index).toString();
             out.println(key + " " + creditCard);
         }
         out.print("Choose the number of credit card: ");
         inputIndexForGetSetDelete = sc.nextInt();
-        if (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfCreditCard.size() - 1) {
-            while (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfCreditCard.size() - 1) {
+        if (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
+            while (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
                 out.print("Choose correct number: ");
                 inputIndexForGetSetDelete = sc.nextInt();
             }
@@ -499,15 +499,17 @@ public class Main {
     }
 
     public static void selectNumberOfPotentialCost() {
+        ArrayList<String> arrayOfKeys = new ArrayList<>();
         for (Integer index : listOfPotentialCosts.keySet()) {
             String key = index.toString();
+            arrayOfKeys.add(key);
             String cost = listOfPotentialCosts.get(index).toString();
             out.println(key + " " + cost);
         }
         out.print("Choose the number of potential cost: ");
         inputIndexForGetSetDelete = sc.nextInt();
-        if (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfPotentialCosts.size() - 1) {
-            while (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfPotentialCosts.size() - 1) {
+        if (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
+            while (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
                 out.print("Choose correct number: ");
                 inputIndexForGetSetDelete = sc.nextInt();
             }
@@ -515,15 +517,17 @@ public class Main {
     }
 
     public static void selectNumberOfCurrentCost() {
+        ArrayList<String> arrayOfKeys = new ArrayList<>();
         for (Integer index : listOfCurrentCosts.keySet()) {
             String key = index.toString();
+            arrayOfKeys.add(key);
             String cost = listOfCurrentCosts.get(index).toString();
             out.println(key + " " + cost);
         }
         out.print("Choose the number of current cost: ");
         inputIndexForGetSetDelete = sc.nextInt();
-        if (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfCurrentCosts.size() - 1) {
-            while (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfCurrentCosts.size() - 1) {
+        if (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
+            while (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
                 out.print("Choose correct number: ");
                 inputIndexForGetSetDelete = sc.nextInt();
             }
@@ -531,15 +535,17 @@ public class Main {
     }
 
     public static void selectNumberOfPotentialIncome() {
+        ArrayList<String> arrayOfKeys = new ArrayList<>();
         for (Integer index : listOfPotentialIncome.keySet()) {
             String key = index.toString();
+            arrayOfKeys.add(key);
             String cost = listOfPotentialIncome.get(index).toString();
             out.println(key + " " + cost);
         }
         out.print("Choose the number of potential income: ");
         inputIndexForGetSetDelete = sc.nextInt();
-        if (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfPotentialIncome.size() - 1) {
-            while (inputIndexForGetSetDelete < 0 || inputIndexForGetSetDelete > listOfPotentialIncome.size() - 1) {
+        if (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
+            while (!(arrayOfKeys.contains(String.valueOf(inputIndexForGetSetDelete)))) {
                 out.print("Choose correct number: ");
                 inputIndexForGetSetDelete = sc.nextInt();
             }
